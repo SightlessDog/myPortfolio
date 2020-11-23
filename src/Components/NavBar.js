@@ -38,6 +38,7 @@ const A = styled.a`
 
 const Logo = styled(A)`
   display: inline-block;
+  font-family: ${primaryFont};
   font-size: ${typeScale.header4};
   margin-top: 10px;
   margin-left: 20px;
@@ -46,7 +47,7 @@ const Logo = styled(A)`
     margin-top: 0;
 
     &:hover {
-      color: ${(props) => props.theme.primaryColorButton};
+      color: ${(props) => props.theme.status.errorColor};
     }
   }
 `;
@@ -106,16 +107,13 @@ class NavBar extends React.Component {
             <A>Home</A>
           </Li>
           <Li>
-            <A>Products</A>
+            <A>Gallery</A>
           </Li>
           <Li>
-            <A>About Us</A>
+            <A>About</A>
           </Li>
           <Li>
-            <A>Contact Us</A>
-          </Li>
-          <Li>
-            <A>Blog</A>
+            <A href="https://www.instagram.com/omega_is/">Instagram</A>
           </Li>
         </Ul>
       </Nav>

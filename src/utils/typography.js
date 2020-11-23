@@ -1,6 +1,6 @@
 export const bodyFont = '"Yeseva One"';
 
-export const primaryFont = '"Roboto Mono"';
+export const primaryFont = '"Roboto"';
 
 export const typeScale = {
   header1: "5.61rem",
