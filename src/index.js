@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
+import { ThemeProvider } from "styled-components";
+// import HomePage from "./Components/HomePage";
+import { darkTheme, defaultTheme, GlobalStyle } from "./utils";
+import HomePage from "./Components/HomePage";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById("root")
-);
+const App = () => {
+  const [useDarkTheme, setUseDarkTheme] = useState(false);
+  let theme = useDarkTheme ? darkTheme : defaultTheme;
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <HomePage />
+      <button onClick={() => setUseDarkTheme(!useDarkTheme)}>
+        Use darkTheme
+      </button>
+    </ThemeProvider>
+  );
+};
+
+ReactDOM.render(<App />, document.querySelector("#root"));
