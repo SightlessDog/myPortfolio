@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { ThemeProvider } from "styled-components";
-// import HomePage from "./Components/HomePage";
 import { darkTheme, defaultTheme, GlobalStyle } from "./utils";
 import HomePage from "./Components/HomePage";
 

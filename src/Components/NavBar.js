@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Icons } from "../assets";
-import { primaryFont, typeScale } from "../utils";
+import { primaryFont, typeScale, defaultTheme } from "../utils";
 
 const Nav = styled.nav`
   font-size: ${typeScale.header5};
@@ -30,7 +30,7 @@ const Ul = styled.ul`
 const A = styled.a`
   text-decoration: none;
   color: ${(props) => props.theme.primaryColorButton};
-
+  cursor: pointer;
   @media screen and (min-width: 768px) {
     margin-left: 40px;
   }
@@ -45,10 +45,6 @@ const Logo = styled(A)`
 
   @media screen and (min-width: 768px) {
     margin-top: 0;
-
-    &:hover {
-      color: ${(props) => props.theme.status.errorColor};
-    }
   }
 `;
 
@@ -85,13 +81,28 @@ class NavBar extends React.Component {
     super(props);
     this.state = {
       showBar: true,
+      menu: ["Home", "Gallery", "About", "Instagram"],
+      hover: false,
     };
     this.handleShowBar = this.handleShowBar.bind(this);
   }
 
   handleShowBar() {
-    console.log(this.state.showBar);
     this.setState({ showBar: !this.state.showBar });
+  }
+
+  handleMouseOver(id) {
+    this.setState({ hover: !this.state.hover });
+    let otherState = this.state.menu.filter(
+      (menuItem) => menuItem != this.state.menu[id.key]
+    );
+    for (let i = 0; i < otherState.length; i++) {
+      let id = this.state.menu.indexOf(otherState[i]);
+      this.state.hover
+        ? (document.getElementById(id).style.color =
+            defaultTheme.primaryColorButton)
+        : (document.getElementById(id).style.color = defaultTheme.textColor);
+    }
   }
 
   render() {
@@ -103,18 +114,18 @@ class NavBar extends React.Component {
         </Toggle>
         <Logo>Elyess</Logo>
         <Ul showBar={this.state.showBar}>
-          <Li>
-            <A>Home</A>
-          </Li>
-          <Li>
-            <A>Gallery</A>
-          </Li>
-          <Li>
-            <A>About</A>
-          </Li>
-          <Li>
-            <A href="https://www.instagram.com/omega_is/">Instagram</A>
-          </Li>
+          {this.state.menu.map((tag, key) => (
+            <Li>
+              <A
+                id={key}
+                onMouseOver={() => this.handleMouseOver({ key })}
+                onMouseLeave={() => this.handleMouseOver({ key })}
+                hoverState={this.state.hover}
+              >
+                {tag}
+              </A>
+            </Li>
+          ))}
         </Ul>
       </Nav>
     );
