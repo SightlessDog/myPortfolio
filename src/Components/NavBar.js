@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { Icons } from "../assets";
-import { primaryFont, typeScale, defaultTheme } from "../utils";
+import { primaryFont, typeScale } from "../utils";
 
 const Nav = styled.nav`
-  font-size: ${typeScale.header5};
+  font-size: ${typeScale.paragraphText};
   padding-bottom: 10px;
   @media screen and (min-width: 768px) {
     display: flex;
@@ -29,17 +29,17 @@ const Ul = styled.ul`
 
 const A = styled.a`
   text-decoration: none;
-  color: ${(props) => props.theme.primaryColorButton};
+  color: ${(props) => props.theme.headersColor};
   cursor: pointer;
   @media screen and (min-width: 768px) {
-    margin-left: 40px;
+    /* margin-left: 40px; */
   }
 `;
 
 const Logo = styled(A)`
   display: inline-block;
   font-family: ${primaryFont};
-  font-size: ${typeScale.header4};
+  font-size: ${typeScale.paragraphText};
   margin-top: 10px;
   margin-left: 20px;
 
@@ -57,7 +57,7 @@ const Li = styled.li`
     margin: 0;
 
     &:hover {
-      color: ${(props) => props.theme.primaryColorButton};
+      color: ${(props) => props.theme.primaryButtonColor};
     }
   }
 `;
@@ -68,7 +68,7 @@ const Toggle = styled.span`
   top: 10px;
   right: 20px;
   cursor: pointer;
-  color: ${(props) => props.theme.primaryColorButton};
+  color: ${(props) => props.theme.primaryButtonColor};
   font-size: 24px;
 
   @media screen and (min-width: 768px) {
@@ -99,9 +99,12 @@ class NavBar extends React.Component {
     for (let i = 0; i < otherState.length; i++) {
       let id = this.state.menu.indexOf(otherState[i]);
       this.state.hover
-        ? (document.getElementById(id).style.color =
-            defaultTheme.primaryColorButton)
-        : (document.getElementById(id).style.color = defaultTheme.textColor);
+        ? (document.getElementById(
+            id
+          ).style.color = this.props.theme.headersColor)
+        : (document.getElementById(
+            id
+          ).style.color = this.props.theme.bodyTextColor);
     }
   }
 
@@ -109,7 +112,6 @@ class NavBar extends React.Component {
     return (
       <Nav>
         <Toggle onClick={this.handleShowBar}>
-          log
           <img src={Icons.BarsIcon} />
         </Toggle>
         <Logo>Elyess</Logo>

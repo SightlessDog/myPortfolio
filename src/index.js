@@ -11,7 +11,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <HomePage />
+      <HomePage theme={theme} />
       <button onClick={() => setUseDarkTheme(!useDarkTheme)}>
         Use darkTheme
       </button>

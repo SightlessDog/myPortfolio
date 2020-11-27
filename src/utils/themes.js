@@ -3,9 +3,11 @@ import { primaryFont, bodyFont } from "./typography";
 
 export const defaultTheme = {
   primaryColor: black[100],
-  primaryColorButton: gold[100],
-  primaryColorOnHover: gold[200],
-  textColor: neutral[100],
+  primaryButtonColor: gold[100],
+  primaryButtonColorOnHover: gold[200],
+  primaryButtonColorOnActive: gold[300],
+  headersColor: gold[300],
+  bodyTextColor: neutral[100],
   textColorInverted: black[100],
   status: {
     errorColor: red[100],
@@ -21,9 +23,11 @@ export const defaultTheme = {
 
 export const darkTheme = {
   primaryColor: neutral[100],
-  primaryColorButton: gold[100],
-  primaryColorOnHover: gold[200],
-  textColor: black[100],
+  primaryButtonColor: gold[100],
+  primaryButtonColorOnHover: gold[200],
+  primaryButtonColorOnActive: gold[300],
+  headersColor: gold[300],
+  bodyTextColor: black[100],
   textColorInverted: neutral[100],
   status: {
     errorColor: red[100],
