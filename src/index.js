@@ -3,19 +3,28 @@ import ReactDOM from "react-dom";
 import { ThemeProvider } from "styled-components";
 import { darkTheme, defaultTheme, GlobalStyle } from "./utils";
 import HomePage from "./Components/HomePage";
+import About from "./Components/About";
+import { BrowserRouter, Route } from "react-router-dom";
 
 const App = () => {
   const [useDarkTheme, setUseDarkTheme] = useState(false);
   let theme = useDarkTheme ? darkTheme : defaultTheme;
 
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <HomePage theme={theme} />
-      <button onClick={() => setUseDarkTheme(!useDarkTheme)}>
-        Use darkTheme
-      </button>
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Route path="/Home">
+          <HomePage theme={theme} />
+        </Route>
+        <Route path="/About">
+          <About theme={theme} />
+        </Route>
+        <button onClick={() => setUseDarkTheme(!useDarkTheme)}>
+          Use darkTheme
+        </button>
+      </ThemeProvider>
+    </BrowserRouter>
   );
 };
 

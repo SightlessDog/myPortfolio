@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, BrowserRouter as Router } from "react-router-dom";
 import styled from "styled-components";
 import { Icons } from "../assets";
 import { primaryFont, typeScale } from "../utils";
@@ -27,7 +28,7 @@ const Ul = styled.ul`
   }
 `;
 
-const A = styled.a`
+const A = styled(Link)`
   text-decoration: none;
   color: ${(props) => props.theme.headersColor};
   cursor: pointer;
@@ -110,26 +111,43 @@ class NavBar extends React.Component {
 
   render() {
     return (
-      <Nav>
-        <Toggle onClick={this.handleShowBar}>
-          <img src={Icons.BarsIcon} />
-        </Toggle>
-        <Logo>Elyess</Logo>
-        <Ul showBar={this.state.showBar}>
-          {this.state.menu.map((tag, key) => (
-            <Li>
-              <A
-                id={key}
-                onMouseOver={() => this.handleMouseOver({ key })}
-                onMouseLeave={() => this.handleMouseOver({ key })}
-                hoverState={this.state.hover}
-              >
-                {tag}
-              </A>
-            </Li>
-          ))}
-        </Ul>
-      </Nav>
+      <Router>
+        <Nav>
+          <Toggle onClick={this.handleShowBar}>
+            <img src={Icons.BarsIcon} />
+          </Toggle>
+          <Logo>Elyess</Logo>
+          <Ul showBar={this.state.showBar}>
+            {this.state.menu.map((tag, key) =>
+              tag == "Instagram" ? (
+                <Li>
+                  <A
+                    id={key}
+                    onMouseOver={() => this.handleMouseOver({ key })}
+                    onMouseLeave={() => this.handleMouseOver({ key })}
+                    hoverState={this.state.hover}
+                    href="https://www.instagram.com/omega_is/"
+                  >
+                    {tag}
+                  </A>
+                </Li>
+              ) : (
+                <Li>
+                  <A
+                    id={key}
+                    onMouseOver={() => this.handleMouseOver({ key })}
+                    onMouseLeave={() => this.handleMouseOver({ key })}
+                    hoverState={this.state.hover}
+                    to={"/" + tag}
+                  >
+                    {tag}
+                  </A>
+                </Li>
+              )
+            )}
+          </Ul>
+        </Nav>
+      </Router>
     );
   }
 }
