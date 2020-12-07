@@ -13,6 +13,9 @@ const Nav = styled.nav`
     padding-bottom: 0;
     height: 70px;
     align-items: center;
+    margin-left: 250px;
+    margin-right: 250px;
+    margin-top: 20px;
   }
 `;
 

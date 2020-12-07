@@ -3,6 +3,7 @@ import { bodyFont, typeScale } from "../utils";
 import Wrapper from "./Wrapper";
 import styled from "styled-components";
 import NavBar from "./NavBar";
+import image from "../assets/pictures/myImage.jpg";
 
 const me =
   "Hi I am Elyess, a frontend developer based in berlin. I am also an amateur documantary photographer who has come upon many different cultures." +
@@ -19,23 +20,38 @@ const Div = styled.div`
   color: ${(props) => props.theme.bodyTextColor};
   font-size: ${typeScale.paragraphText};
   text-align: center;
-  width: 50%;
 `;
 
-const Container = styled.div`
+const LignContainer = styled.div`
+  margin-left: 350px;
+  margin-right: 350px;
   margin-top: 100px;
-  margin-left: 100px;
-  height: 300px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas:
+    "text pic"
+    "text pic"
+    "text pic";
+`;
+
+const ColContainer = styled.div`
   width: 100%;
+  grid-area: text;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 `;
 
 const ImgContainer = styled.div`
+  grid-area: pic;
   display: flex;
-  justify-content: flex-end;
-  margin: 30px 100px;
+  justify-content: center;
+  justify-items: stretch;
+`;
+
+const Img = styled.img`
+  width: 50%;
 `;
 
 class About extends React.Component {
@@ -43,13 +59,15 @@ class About extends React.Component {
     return (
       <Wrapper>
         <NavBar theme={this.props.theme} />
-        <Container>
-          <Div>{me}</Div>
-          <Div>{experience}</Div>
-        </Container>
-        <ImgContainer>
-          <img src={require("../assets/pictures/myImage.jpg")} />
-        </ImgContainer>
+        <LignContainer>
+          <ColContainer>
+            <Div>{me}</Div>
+            <Div>{experience}</Div>
+          </ColContainer>
+          <ImgContainer>
+            <Img src={image} />
+          </ImgContainer>
+        </LignContainer>
       </Wrapper>
     );
   }

@@ -8,28 +8,34 @@ import Wrapper from "./Wrapper";
 const BodyText = styled.div`
   color: ${(props) => props.theme.bodyTextColor};
   font-family: ${bodyFont};
-  font-size: ${typeScale.paragraphText};
   text-align: center;
-
-  @media screen and (min-width: 768px) {
-    width: 600px;
-    height: 550px;
-    font-size: ${typeScale.header3};
-  }
+  grid-area: text;
+  font-size: ${typeScale.header3};
 `;
 
 const TextButtonsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 100px;
   margin-top: 50px;
-  margin-left: 150px;
+  margin-left: 350px;
+  margin-right: 350px;
+  row-gap: 100px;
+  grid-template-areas:
+    "text . pic pic"
+    "buttons . pic pic"
+    ". . pic pic";
 `;
 
 const ButtonsContainer = styled.div`
   width: 600px;
+  grid-area: buttons;
+  justify-content: center;
+  align-items: start;
   display: flex;
   justify-content: space-around;
 `;
+
 class HomePage extends React.Component {
   render() {
     return (
@@ -38,7 +44,7 @@ class HomePage extends React.Component {
         <TextButtonsContainer>
           <BodyText>
             Meet the futue photographer the best one in berlin th edeveloper the
-            designer the unchained the mother of the dragons{" "}
+            designer the unchained the mother of the dragons
           </BodyText>
           <ButtonsContainer>
             <PrimaryButton>Discover</PrimaryButton>
